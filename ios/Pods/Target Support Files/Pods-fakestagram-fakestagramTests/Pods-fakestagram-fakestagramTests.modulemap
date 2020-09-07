@@ -1,0 +1,6 @@
+module Pods_fakestagram_fakestagramTests {
+  umbrella header "Pods-fakestagram-fakestagramTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
