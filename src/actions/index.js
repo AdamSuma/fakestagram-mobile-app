@@ -17,7 +17,7 @@ export const getPhotos = () => {
     return async dispatch => {
         try{
             const response = await fakeApi.get('api/photos/request_photos/')
-            dispatch({type: 'get_photos', payload: response.data.photos})
+            dispatch({type: 'get_photos', payload: response.data})
         } catch(err){
             dispatch({type: 'add_photo_error', payload: "Could not connect to server, check internet connection"})
         }
@@ -25,10 +25,10 @@ export const getPhotos = () => {
 }
 
 export const getAccount = () => {
+    console.log("merge")
     return async dispatch => {
         try{
             const response = await fakeApi.get('api/photos/home/')
-            console.log(response.data)
             dispatch({type: 'get_account', payload: response.data })
         } catch(err){
             dispatch({type: 'add_photo_error', payload: "Could not connect to server, check internet connection"})

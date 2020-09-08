@@ -37,13 +37,16 @@ const Account = () => {
     return(
         <Stack.Navigator
             initialRouteName="Account"
+            screenOptions={{
+                headerShown: false
+            }}
         >
             <Stack.Screen   
                 name="Account"
                 component={MyAccountScreen}
             />
             <Stack.Screen   
-                name="Photo"
+                name="PhotoA"
                 component={PhotoDetailScreen}
             />
             <Stack.Screen   

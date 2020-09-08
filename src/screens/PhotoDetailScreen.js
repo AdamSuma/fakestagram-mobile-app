@@ -1,11 +1,15 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+import Photo from '../components/Photo'
 
-const PhotoDetailScreen = () => {
+const PhotoDetailScreen = ({ route }) => {
+    const { username, profile_picture, image } = route.params
     return(
-        <View>
-            <Text>PhotoDetailScreen</Text>
-        </View>
+        <Photo
+            username={username}
+            profile_picture={profile_picture}
+            image={image}
+        />
     )
 }
 

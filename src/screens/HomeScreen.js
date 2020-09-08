@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { Text, View, StyleSheet, Button, FlatList, SafeAreaView } from 'react-native'
+import { Text, View, StyleSheet, Button, FlatList, SafeAreaView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { getPhotos } from '../actions'
 import Photo from '../components/Photo'
 
 
-const HomeScreen = ( { getPhotos, error, isLoading, photos } ) => {
+const HomeScreen = ( { getPhotos, error, isLoading, photos, user, navigation } ) => {
     useEffect(() => {
         getPhotos();
         return () => {
@@ -18,14 +18,16 @@ const HomeScreen = ( { getPhotos, error, isLoading, photos } ) => {
                 data={photos} 
                 renderItem={({ item }) => {
                     return(
+                        <TouchableOpacity onPress={navigation.navigate('Photo', {username: user.username, profile_picture: user.profile_picture, image: item.image})}>
                         <Photo
                             username={item.userprofile.username}
                             profile_picture={item.userprofile.profile_picture}
                             image={item.image}
                         />
+                        </ TouchableOpacity>
                     )
                 }}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
             /> 
         </SafeAreaView>
     )
@@ -40,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = state => {
-    return { error: state.photo.error, isLoading: state.photo.isLoading, photos: state.photo.photos,  }
+    return { user: state.photo.user, error: state.photo.error, isLoading: state.photo.isLoading, photos: state.photo.photos,  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
