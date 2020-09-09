@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Text, View, StyleSheet, Image,  SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, Image,  SafeAreaView, FlatList, TouchableOpacity, Button } from 'react-native'
 import {connect} from 'react-redux'
 import { getAccount } from '../actions'
 
@@ -19,12 +19,13 @@ const MyAccountScreen = ({ getAccount, user, photos, error, isLoading, navigatio
                     <Text style={styles.username}>{user.username}</Text>
                 </View>
                 <Text style={{ fontSize:15, marginLeft: 15, marginBottom:20}}>{user.bio}</Text>
+                <Button title="Edit Profile" onPress={() => navigation.navigate("Edit", {image: user.profile_picture, bio: user.bio})} />
             </View>
             <FlatList 
                 data={photos} 
                 renderItem={({ item }) => {
                     return(
-                        <TouchableOpacity onPress={navigation.navigate('PhotoA', {username: user.username, profile_picture: user.profile_picture, image: item.image})}>
+                        <TouchableOpacity onPress={() => navigation.navigate('PhotoA', {username: user.username, profile_picture: user.profile_picture, image: item.image})}>
                             <Image source={{uri: `http://localhost:8000${item.image}`}} style={{width:130, height:130, marginLeft:6, marginTop:6}} />
                         </TouchableOpacity>
                     )

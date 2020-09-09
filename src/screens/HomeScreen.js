@@ -18,7 +18,7 @@ const HomeScreen = ( { getPhotos, error, isLoading, photos, user, navigation } )
                 data={photos} 
                 renderItem={({ item }) => {
                     return(
-                        <TouchableOpacity onPress={navigation.navigate('Photo', {username: user.username, profile_picture: user.profile_picture, image: item.image})}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Photo', {username: user.username, profile_picture: user.profile_picture, image: item.image})}>
                         <Photo
                             username={item.userprofile.username}
                             profile_picture={item.userprofile.profile_picture}

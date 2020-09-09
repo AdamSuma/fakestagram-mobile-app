@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux'
 import reducers from './reducers'
 import Navigator from './navigation/navigator'
 import ReduxThunk from 'redux-thunk'
+import { NavigationActions } from '@react-navigation/native'
 
 const App = () => {
     return (
